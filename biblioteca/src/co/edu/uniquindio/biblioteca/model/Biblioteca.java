@@ -79,7 +79,7 @@ public class Biblioteca {
 	/**
 	 * Obtiene la lista de empleados de la biblioteca
 	 *
-	 * @return
+	 * @return listaEmpleados
 	 */
 	public ArrayList<Empleado> getListaEmpleados() {
 		return listaEmpleados;
@@ -97,7 +97,7 @@ public class Biblioteca {
 	/**
 	 * Obtiene la lista de libros de la biblioteca
 	 *
-	 * @return
+	 * @return listaLibros
 	 */
 	public ArrayList<Libro> getListaLibros() {
 		return listaLibros;
@@ -115,7 +115,7 @@ public class Biblioteca {
 	/**
 	 * Obtiene la direccion de la biblioteca
 	 * 
-	 * @return
+	 * @return direccion
 	 */
 	public String getDireccion() {
 		return direccion;
@@ -133,7 +133,7 @@ public class Biblioteca {
 	/**
 	 * Obtiene el telefono de la biblioteca
 	 *
-	 * @return
+	 * @return telefono
 	 */
 	public String getTelefono() {
 		return telefono;
@@ -176,6 +176,8 @@ public class Biblioteca {
 	 * @param estado
 	 * @param identificacion
 	 * @throws Exception
+	 *
+	 * @return mensaje
 	 */
 
 	public String crearEstudiante(String nombres, String apellidos, Integer edad, String programa, String estado,
@@ -247,6 +249,7 @@ public class Biblioteca {
 	 *
 	 * @return El estudiante ha sido actualizado
 	 */
+	
 	public String actualizarEstudiante(String nombres, String apellidos, String identificacion, Integer edad)
 			throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
@@ -264,6 +267,7 @@ public class Biblioteca {
 	/**
 	 * Este metodo permite ordenar libros por ISBN
 	 */
+
 	public void ordenarLibrosPorISBN() {
 		Collections.sort(listaEstudiantes, new Comparator<Estudiante>() {
 			@Override
@@ -279,6 +283,7 @@ public class Biblioteca {
 	 * @param identificacion
 	 * @return verificado
 	 */
+	 
 	private boolean verificarEstudiante(String identificacion) {
 		boolean verificado = false;
 		for (Estudiante estudianteaux : listaEstudiantes) {
