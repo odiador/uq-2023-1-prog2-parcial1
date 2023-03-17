@@ -15,7 +15,6 @@ public class Test {
 		try {
 			resultado = biblioteca.crearEstudiante(nombre, apellidos, 20, "sistemas", "activo", "12345");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			resultado = e.getMessage();
 		}
 		System.out.println(resultado);
@@ -23,21 +22,18 @@ public class Test {
 			resultado = biblioteca.crearEstudiante(nombre, apellidos, 20, "sistemas", "activo", "12345");
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO Auto-generated catch block
 			resultado = e.getMessage();
 		}
 		System.out.println(resultado);
 		try {
 			resultado = biblioteca.crearEstudiante(nombre, apellidos, 20, "sistemas", "activo", "12345");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			resultado = e.getMessage();
 		}
 		System.out.println(resultado);
 		try {
 			resultado = biblioteca.crearEstudiante(nombre, apellidos, 20, "sistemas", "activo", "12345");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			resultado = e.getMessage();
 		}
 		System.out.println(resultado);
