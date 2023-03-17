@@ -3,7 +3,7 @@ package co.edu.uniquindio.biblioteca.model;
 public enum Tipo {
 
 	
-	Cientifico(0),BIOGRAFIA(1),MONOGRAFIA(2);
+	CIENTIFICO(0),BIOGRAFIA(1),MONOGRAFIA(2);
 	int valor;
 	
 	 Tipo (int valor){
