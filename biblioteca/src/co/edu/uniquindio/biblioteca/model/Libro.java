@@ -8,6 +8,13 @@ public class Libro {
 	private String isbn;
 	private Tipo tipo;
 
+	/**
+	 * 
+	 * @param titulo
+	 * @param autor
+	 * @param editorial
+	 * @param isbn
+	 */
 	public Libro(String titulo, String autor, String editorial, String isbn) {
 		super();
 		this.titulo = titulo;
@@ -16,36 +23,117 @@ public class Libro {
 		this.isbn = isbn;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
 
+	/**
+	 * 
+	 * @param titulo
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAutor() {
 		return autor;
 	}
 
+	/**
+	 * 
+	 * @param autor
+	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getEditorial() {
 		return editorial;
 	}
 
+	/**
+	 * 
+	 * @param editorial
+	 */
 	public void setEditorial(String editorial) {
 		this.editorial = editorial;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getIsbn() {
 		return isbn;
 	}
 
+	/**
+	 * 
+	 * @param isbn
+	 */
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	/**
+	 * 
+	 * @param titulo
+	 * @return
+	 */
+	public boolean cumpleTitulo(String titulo) {
+		return getTitulo().equals(titulo);
+	}
+
+	/**
+	 * 
+	 * @param autor
+	 * @return
+	 */
+	public boolean cumpleAutor(String autor) {
+		return getAutor().equals(autor);
+	}
+
+	/**
+	 * 
+	 * @param isbn
+	 * @return
+	 */
+	public boolean cumpleIsbn(String isbn) {
+		return getIsbn().equals(isbn);
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Tipo getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * 
+	 * @param tipo
+	 */
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Libro [titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial + ", isbn=" + isbn
+				+ ", tipo=" + tipo + "]";
 	}
 
 	@Override
@@ -71,22 +159,6 @@ public class Libro {
 		} else if (!isbn.equals(other.isbn))
 			return false;
 		return true;
-	}
-
-	public boolean cumpleTitulo(String titulo) {
-		return getTitulo().equals(titulo);
-	}
-
-	public boolean cumpleIsbn(String isbn) {
-		return getIsbn().equals(isbn);
-	}
-
-	public Tipo getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
 	}
 
 }

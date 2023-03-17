@@ -7,81 +7,152 @@ public class Prestamo {
 	private String fecha;
 	private double total;
 	private int tiempoEntrega;
-	private String codio;
+	private String codigo;
 	private ArrayList<DetallePrestamo> listaDetallePrestamo;
 	private Empleado empleadoPrestamo;
 
+	/**
+	 * 
+	 * @param fecha
+	 * @param total
+	 * @param tiempoEntrega
+	 * @param codio
+	 */
 	public Prestamo(String fecha, double total, int tiempoEntrega, String codio) {
 		super();
 		this.fecha = fecha;
 		this.total = total;
 		this.tiempoEntrega = tiempoEntrega;
-		this.codio = codio;
+		this.codigo = codio;
 		this.listaDetallePrestamo = new ArrayList<DetallePrestamo>();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Empleado getEmpleadoPrestamo() {
 		return empleadoPrestamo;
 	}
 
+	/**
+	 * 
+	 * @param empleadoPrestamo
+	 */
 	public void setEmpleadoPrestamo(Empleado empleadoPrestamo) {
 		this.empleadoPrestamo = empleadoPrestamo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getFecha() {
 		return fecha;
 	}
 
+	/**
+	 * 
+	 * @param fecha
+	 */
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public double getTotal() {
 		return total;
 	}
 
+	/**
+	 * 
+	 * @param total
+	 */
 	public void setTotal(double total) {
 		this.total = total;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getTiempoEntrega() {
 		return tiempoEntrega;
 	}
 
+	/**
+	 * 
+	 * @param tiempoEntrega
+	 */
 	public void setTiempoEntrega(int tiempoEntrega) {
 		this.tiempoEntrega = tiempoEntrega;
 	}
 
-	public String getCodio() {
-		return codio;
+	/**
+	 * 
+	 * @return
+	 */
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setCodio(String codio) {
-		this.codio = codio;
+	/**
+	 * 
+	 * @param codigo
+	 */
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<DetallePrestamo> getListaDetallePrestamo() {
 		return listaDetallePrestamo;
 	}
 
+	/**
+	 * 
+	 * @param listaDetallePrestamo
+	 */
 	public void setListaDetallePrestamo(ArrayList<DetallePrestamo> listaDetallePrestamo) {
 		this.listaDetallePrestamo = listaDetallePrestamo;
 	}
 
+	/**
+	 * Verifica si el total es igual a una cantidad si en el préstamo se encuentra
+	 * algún libro con un autor
+	 * 
+	 * @param autor es el autor del libro a comparar
+	 * @param valor es el valor total del préstamo a comparar
+	 * @return true si se cumplen ambas condiciones
+	 * @see {@link #verificarAutor(String)}
+	 *      <li>{@link #verificarTotal(double)}
+	 */
 	public boolean verificarTotalAutor(String autor, double valor) {
-		boolean cumple = false;
+		return verificarTotal(valor) && verificarAutor(autor);
+	}
 
-		boolean totalVerificado = false;
-		boolean autorVerificado = false;
-
-		totalVerificado = verificarTota(valor);
-		autorVerificado = verificarAutor(autor);
-		
-		if(totalVerificado == true && autorVerificado == true){
-		cumple = true;
+	/**
+	 * 
+	 * @param autor
+	 * @return
+	 */
+	public boolean verificarAutor(String autor) {
+		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {
+			if (detallePrestamo.cumpleAutor(autor)) {
+				return true;
+			}
 		}
-		
-		return cumple;
+		return false;
+	}
+
+	private boolean verificarTotal(double valor) {
+		return total == getTotal();
 	}
 
 	/**
@@ -99,6 +170,11 @@ public class Prestamo {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param isbn
+	 * @return
+	 */
 	public boolean cumpleIsbny(String isbn) {
 
 		boolean cumple = false;
@@ -110,6 +186,11 @@ public class Prestamo {
 		return cumple;
 	}
 
+	/**
+	 * 
+	 * @param isbn
+	 * @return
+	 */
 	public boolean cumpleIsbnx(String isbn) {
 
 		boolean cumple = false;
@@ -121,6 +202,14 @@ public class Prestamo {
 		return cumple;
 	}
 
+	/**
+	 * 
+	 * @param titulo
+	 * @param limiteInferior
+	 * @param limiteSuperior
+	 * @param aniosExperiencia
+	 * @return
+	 */
 	public boolean cumpleLibro(String titulo, int limiteInferior, int limiteSuperior, int aniosExperiencia) {
 
 		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {
@@ -131,6 +220,12 @@ public class Prestamo {
 		return false;
 	}
 
+	/**
+	 * q
+	 * 
+	 * @param tipo
+	 * @return
+	 */
 	public int obtenerCantidadTipo(Tipo tipo) {
 		int cantidad = 0;
 		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {

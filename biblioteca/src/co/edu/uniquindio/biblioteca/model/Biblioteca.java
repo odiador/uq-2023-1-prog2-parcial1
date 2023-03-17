@@ -15,6 +15,9 @@ public class Biblioteca {
 	private ArrayList<Empleado> listaEmpleados;
 	private ArrayList<Libro> listaLibros;
 
+	/**
+	 * Este es el metodo constructor de la clase biblioteca sin parámetros
+	 */
 	public Biblioteca() {
 
 	}
@@ -26,11 +29,6 @@ public class Biblioteca {
 	 * @param direccion
 	 * @param telefono
 	 */
-
-	public String getNombre() {
-		return nombre;
-	}
-
 	public Biblioteca(String nombre, String direccion, String telefono) {
 		super();
 		this.nombre = nombre;
@@ -42,61 +40,130 @@ public class Biblioteca {
 		this.listaPrestamos = new ArrayList<Prestamo>();
 	}
 
+	/**
+	 * Obtiene el nombre de la biblioteca
+	 *
+	 * @return nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * Cambia el nombre de la biblioteca
+	 * 
+	 * @param nombre
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Obtiene la lista de prestamos de la biblioteca
+	 *
+	 * @return listaPrestamos
+	 */
 	public ArrayList<Prestamo> getListaPrestamos() {
 		return listaPrestamos;
 	}
 
+	/**
+	 * Cambia la lista de prestamos de la biblioteca
+	 *
+	 * @param listaPrestamos
+	 */
 	public void setListaPrestamos(ArrayList<Prestamo> listaPrestamos) {
 		this.listaPrestamos = listaPrestamos;
 	}
 
+	/**
+	 * Obtiene la lista de empleados de la biblioteca
+	 *
+	 * @return
+	 */
 	public ArrayList<Empleado> getListaEmpleados() {
 		return listaEmpleados;
 	}
 
+	/**
+	 * Cambia la lista de empleados de la biblioteca
+	 *
+	 * @param listaEmpleados
+	 */
 	public void setListaEmpleados(ArrayList<Empleado> listaEmpleados) {
 		this.listaEmpleados = listaEmpleados;
 	}
 
+	/**
+	 * Obtiene la lista de libros de la biblioteca
+	 *
+	 * @return
+	 */
 	public ArrayList<Libro> getListaLibros() {
 		return listaLibros;
 	}
 
+	/**
+	 * Cambia la lista de libros de la biblioteca
+	 * 
+	 * @param listaLibros
+	 */
 	public void setListaLibros(ArrayList<Libro> listaLibros) {
 		this.listaLibros = listaLibros;
 	}
 
+	/**
+	 * Obtiene la direccion de la biblioteca
+	 * 
+	 * @return
+	 */
 	public String getDireccion() {
 		return direccion;
 	}
 
+	/**
+	 * Cambia la direccion de la biblioteca
+	 * 
+	 * @param direccion
+	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
+	/**
+	 * Obtiene el telefono de la biblioteca
+	 *
+	 * @return
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * Cambia el telefono de la biblioteca
+	 * 
+	 * @param telefono
+	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
+	/**
+	 * Obtiene la lista de estudiantes de la biblioteca
+	 *
+	 * @return listaEstudiantes
+	 */
 	public ArrayList<Estudiante> getListaEstudiantes() {
 		return listaEstudiantes;
 	}
 
+	/**
+	 * Cambia la lista de estudiantes de la biblioteca
+	 *
+	 * @param listaEstudiantes
+	 */
 	public void setListaEstudiantes(ArrayList<Estudiante> listaEstudiantes) {
 		this.listaEstudiantes = listaEstudiantes;
-	}
-
-	@Override
-	public String toString() {
-		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 
 	/**
@@ -110,6 +177,7 @@ public class Biblioteca {
 	 * @param identificacion
 	 * @throws Exception
 	 */
+
 	public String crearEstudiante(String nombres, String apellidos, Integer edad, String programa, String estado,
 			String identificacion) throws Exception {
 
@@ -128,8 +196,9 @@ public class Biblioteca {
 	 * Obtener un estudiante
 	 * 
 	 * @param identificacion
-	 * @return
+	 * @return estudianteEncontrado
 	 */
+
 	public Estudiante obtenerEstudiante(String identificacion) {
 
 		Estudiante estudianteEncontrado = null;
@@ -142,6 +211,12 @@ public class Biblioteca {
 		return estudianteEncontrado;
 	}
 
+	/**
+	 * Este metodo permite eliminar un estudiante
+	 * 
+	 * @param identificacion
+	 */
+
 	public void eliminarEstudiante(String identificacion) throws Exception {
 		if (verificarEstudiante(identificacion) == false) {
 			throw new Exception("El estudiante no esta registrado");
@@ -153,6 +228,7 @@ public class Biblioteca {
 			}
 		}
 	}
+
 
 	public void eliminarEstudiante2(String identificacion) throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
@@ -233,9 +309,9 @@ public class Biblioteca {
 	/**
 	 * 
 	 * @return
-	 * @throws PrestamoException
+	 * @throws BibliotecaException
 	 */
-	public String obtenerEmpleadoPrestamoLibroIsbn(String isbn) throws PrestamoException {
+	public String obtenerEmpleadoPrestamoLibroIsbn(String isbn) throws BibliotecaException {
 		String empleadoEncontrado = "";
 
 		for (Prestamo prestamo : listaPrestamos) {
@@ -245,7 +321,7 @@ public class Biblioteca {
 			}
 		}
 
-		throw new PrestamoException("NO exuste un prestamo para el isbn");
+		throw new BibliotecaException("NO exuste un prestamo para el isbn");
 	}
 
 	// punto 2
@@ -260,24 +336,20 @@ public class Biblioteca {
 	}
 
 	// Consultar cual es el tipo de libro que ha sido prestado
-	// m�s veces en la biblioteca, seg�n sus unidades prestadas. (1.0).
+	// mas veces en la biblioteca, segun sus unidades prestadas.
 
 	public Tipo obtenerTipoMasPrestado() {
 
 		Tipo tipoMasPrestado = Tipo.BIOGRAFIA;
 
-		int totalPrestadoBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
-		int totalPrestadoCientifico = obtenerTotalPrestado(Tipo.CIENTIFICO);
-		int totalPrestadoMonografia = obtenerTotalPrestado(Tipo.MONOGRAFIA);
-
-		if (totalPrestadoBiografia > totalPrestadoCientifico && totalPrestadoBiografia > totalPrestadoMonografia) {
-			tipoMasPrestado = Tipo.BIOGRAFIA;
-		} else {
-			if (totalPrestadoCientifico > totalPrestadoMonografia) {
-				tipoMasPrestado = Tipo.CIENTIFICO;
-			} else {
-				tipoMasPrestado = Tipo.MONOGRAFIA;
-			}
+		int totalBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
+		int totalCientifico = obtenerTotalPrestado(Tipo.CIENTIFICO);
+		int totalMonografia = obtenerTotalPrestado(Tipo.MONOGRAFIA);
+		if (totalCientifico > totalBiografia) {
+			tipoMasPrestado = Tipo.CIENTIFICO;
+		}
+		if (totalMonografia > totalBiografia) {
+			tipoMasPrestado = Tipo.CIENTIFICO;
 		}
 
 		return tipoMasPrestado;
@@ -291,6 +363,36 @@ public class Biblioteca {
 		}
 
 		return cantidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Biblioteca [nombre=" + nombre + ", direccion=" + direccion + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((telefono == null) ? 0 : telefono.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Biblioteca other = (Biblioteca) obj;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		return true;
 	}
 
 }
