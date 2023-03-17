@@ -229,7 +229,6 @@ public class Biblioteca {
 		}
 	}
 
-
 	public void eliminarEstudiante2(String identificacion) throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
 		if (estudianteEncontrado == null) {
@@ -238,6 +237,16 @@ public class Biblioteca {
 		listaEstudiantes.remove(estudianteEncontrado);
 	}
 
+	/**
+	 * Este metodo permite actualizar un estudiante
+	 *
+	 * @param nombres
+	 * @param apellidos
+	 * @param identificacion
+	 * @param edad
+	 *
+	 * @return El estudiante ha sido actualizado
+	 */
 	public String actualizarEstudiante(String nombres, String apellidos, String identificacion, Integer edad)
 			throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
@@ -252,6 +261,9 @@ public class Biblioteca {
 		return " El estudiante ha sido actualizado ";
 	}
 
+	/**
+	 * Este metodo permite ordenar libros por ISBN
+	 */
 	public void ordenarLibrosPorISBN() {
 		Collections.sort(listaEstudiantes, new Comparator<Estudiante>() {
 			@Override
@@ -262,9 +274,10 @@ public class Biblioteca {
 	}
 
 	/**
-	 * 
+	 * Verificar un estudiante
+	 *
 	 * @param identificacion
-	 * @return
+	 * @return verificado
 	 */
 	private boolean verificarEstudiante(String identificacion) {
 		boolean verificado = false;
@@ -277,6 +290,12 @@ public class Biblioteca {
 		return verificado;
 	}
 
+	/**
+	 * Obtiene a los estudiantes que sean mayores de edad
+	 * 
+	 * @param edad
+	 * @return listaEstudiantesEncontrados
+	 */
 	public ArrayList<Estudiante> obtenerEstudiantesEdadMayor(int edad) {
 		ArrayList<Estudiante> listaEstudiantesEncontrados = new ArrayList<Estudiante>();
 
@@ -289,10 +308,12 @@ public class Biblioteca {
 	}
 
 	/**
-	 * 
+	 * Obtiene los prestamos que tienen un autor y valor determinados 
+	 *
 	 * @param autor
 	 * @param valor
-	 * @return
+	 *
+	 * @return prestamosEncontrados
 	 */
 	public ArrayList<Prestamo> obtenerPrestamosTotalAutor(String autor, double valor) {
 		ArrayList<Prestamo> prestamosEncontrados = new ArrayList<Prestamo>();
@@ -321,11 +342,19 @@ public class Biblioteca {
 			}
 		}
 
-		throw new BibliotecaException("NO exuste un prestamo para el isbn");
+		throw new BibliotecaException("NO existe un prestamo para el isbn");
 	}
 
 	// punto 2
 
+	/**
+	 * 
+	 * @param titulo
+	 * @param limiteInferior
+	 * @param limiteSuperior
+	 * @param aniosExperiencia
+	 * @return
+	 */
 	public Prestamo devolverPrestamoLibro(String titulo, int limiteInferior, int limiteSuperior, int aniosExperiencia) {
 		for (Prestamo prestamo : listaPrestamos) {
 			if (prestamo.cumpleLibro(titulo, limiteInferior, limiteSuperior, aniosExperiencia)) {
@@ -335,26 +364,42 @@ public class Biblioteca {
 		return null;
 	}
 
+//------------------------------------------------------------------------------------------------
 	// Consultar cual es el tipo de libro que ha sido prestado
 	// mas veces en la biblioteca, segun sus unidades prestadas.
 
+	/**
+	 * Obtiene el tipo de libro mas vendido 
+	 *
+	 * @return tipoMasPrestado
+	 */
 	public Tipo obtenerTipoMasPrestado() {
 
 		Tipo tipoMasPrestado = Tipo.BIOGRAFIA;
 
-		int totalBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
-		int totalCientifico = obtenerTotalPrestado(Tipo.CIENTIFICO);
-		int totalMonografia = obtenerTotalPrestado(Tipo.MONOGRAFIA);
-		if (totalCientifico > totalBiografia) {
-			tipoMasPrestado = Tipo.CIENTIFICO;
-		}
-		if (totalMonografia > totalBiografia) {
-			tipoMasPrestado = Tipo.CIENTIFICO;
+		int totalPrestadoBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
+		int totalPrestadoCientifico = obtenerTotalPrestado(Tipo.CIENTIFICO);
+		int totalPrestadoMonografia = obtenerTotalPrestado(Tipo.MONOGRAFIA);
+
+		if (totalPrestadoBiografia > totalPrestadoCientifico && totalPrestadoBiografia > totalPrestadoMonografia) {
+			tipoMasPrestado = Tipo.BIOGRAFIA;
+		} else {
+			if (totalPrestadoCientifico > totalPrestadoMonografia) {
+				tipoMasPrestado = Tipo.CIENTIFICO;
+			} else {
+				tipoMasPrestado = Tipo.MONOGRAFIA;
+			}
 		}
 
 		return tipoMasPrestado;
 	}
 
+	/**
+	 * Obtiene el total de libros prestados del tipo necesitado
+	 *
+	 * @param tipo
+	 * @return cantidad
+	 */
 	private int obtenerTotalPrestado(Tipo tipo) {
 
 		int cantidad = 0;
