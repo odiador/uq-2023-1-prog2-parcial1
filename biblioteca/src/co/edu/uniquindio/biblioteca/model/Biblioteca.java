@@ -453,6 +453,7 @@ public class Biblioteca {
 	 * programa, estos préstamos deben tener un total dentro del rango mayor a 10000
 	 * y menor a 200000. (1.0).
 	 */
+
 	/**
 	 * Obtiene los libros de un tipo determinado que hayan sido prestados por un
 	 * estudiante que tenga una identificadion {@code id} y que esté en un programa
