@@ -270,14 +270,14 @@ public class Biblioteca {
 		Tipo tipoMasPrestado = Tipo.BIOGRAFIA;
 
 		int totalPrestadoBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
-		int totalPrestadoCientifico = obtenerTotalPrestado(Tipo.Cientifico);
+		int totalPrestadoCientifico = obtenerTotalPrestado(Tipo.CIENTIFICO);
 		int totalPrestadoMonografia = obtenerTotalPrestado(Tipo.MONOGRAFIA);
 
 		if (totalPrestadoBiografia > totalPrestadoCientifico && totalPrestadoBiografia > totalPrestadoMonografia) {
 			tipoMasPrestado = Tipo.BIOGRAFIA;
 		} else {
 			if (totalPrestadoCientifico > totalPrestadoMonografia) {
-				tipoMasPrestado = Tipo.Cientifico;
+				tipoMasPrestado = Tipo.CIENTIFICO;
 			} else {
 				tipoMasPrestado = Tipo.MONOGRAFIA;
 			}
