@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import javax.swing.JOptionPane;
-
-import org.junit.experimental.theories.FromDataPoints;
-
 public class Biblioteca {
 
-	
-	//ATRIBUTOS
+	// ATRIBUTOS
 	private String nombre;
 	private String direccion;
 	private String telefono;
@@ -19,18 +14,18 @@ public class Biblioteca {
 	private ArrayList<Prestamo> listaPrestamos;
 	private ArrayList<Empleado> listaEmpleados;
 	private ArrayList<Libro> listaLibros;
-	
+
 	public Biblioteca() {
-	
+
 	}
 
 	/**
 	 * Este es el metodo constructor de la clase biblioteca
+	 * 
 	 * @param nombre
 	 * @param direccion
 	 * @param telefono
 	 */
-	
 
 	public String getNombre() {
 		return nombre;
@@ -106,22 +101,23 @@ public class Biblioteca {
 
 	/**
 	 * Este metodo permite crear un estudiante
+	 * 
 	 * @param nombres
 	 * @param apellidos
 	 * @param edad
 	 * @param programa
 	 * @param estado
 	 * @param identificacion
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String crearEstudiante(String nombres, String apellidos, Integer edad, String programa, String estado,
-			String identificacion) throws Exception{
-		
+			String identificacion) throws Exception {
+
 		String mensaje = "El estudiante ha sido registrado";
 		boolean estudianteEncontrado = verificarEstudiante(identificacion);
-		if( estudianteEncontrado == true){
+		if (estudianteEncontrado == true) {
 			throw new Exception("El estudiante ya existe");
-		}else{
+		} else {
 			Estudiante nuevoEstudiante = new Estudiante(nombres, apellidos, edad, programa, estado, identificacion);
 			listaEstudiantes.add(nuevoEstudiante);
 		}
@@ -130,154 +126,147 @@ public class Biblioteca {
 
 	/**
 	 * Obtener un estudiante
+	 * 
 	 * @param identificacion
 	 * @return
 	 */
-	public Estudiante obtenerEstudiante (String identificacion){
-		
+	public Estudiante obtenerEstudiante(String identificacion) {
+
 		Estudiante estudianteEncontrado = null;
-		
+
 		for (Estudiante estudiante : listaEstudiantes) {
-			if(estudiante.getIdentificacion().equals(identificacion)){
+			if (estudiante.getIdentificacion().equals(identificacion)) {
 				estudianteEncontrado = estudiante;
 			}
 		}
 		return estudianteEncontrado;
 	}
-	
-	public void eliminarEstudiante(String identificacion) throws Exception
-	{
-		if(verificarEstudiante(identificacion)==false)
-		{
+
+	public void eliminarEstudiante(String identificacion) throws Exception {
+		if (verificarEstudiante(identificacion) == false) {
 			throw new Exception("El estudiante no esta registrado");
-		}
-		else
-		{
-			for(int i=0; i<listaEstudiantes.size();i++)
-			{
-				if(listaEstudiantes.get(i).getIdentificacion().equals(identificacion))
-				{
+		} else {
+			for (int i = 0; i < listaEstudiantes.size(); i++) {
+				if (listaEstudiantes.get(i).getIdentificacion().equals(identificacion)) {
 					listaEstudiantes.remove(i);
 				}
 			}
 		}
 	}
-	
-	
-	public void eliminarEstudiante2(String identificacion) throws Exception
-	{
+
+	public void eliminarEstudiante2(String identificacion) throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
-		if(estudianteEncontrado == null){
+		if (estudianteEncontrado == null) {
 			throw new Exception("El estudiante no esta registrado");
 		}
 		listaEstudiantes.remove(estudianteEncontrado);
 	}
-	public String actualizarEstudiante(String nombres , String apellidos , String identificacion, Integer edad) throws Exception{
+
+	public String actualizarEstudiante(String nombres, String apellidos, String identificacion, Integer edad)
+			throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
-		if(estudianteEncontrado == null){
+		if (estudianteEncontrado == null) {
 			throw new Exception("El estudiante no esta registrado");
 		}
-       estudianteEncontrado.setNombres(nombres);
-       estudianteEncontrado.setApellidos(apellidos);
-     
-       estudianteEncontrado.setEdadEstudiante(edad);
-       
-       return " El estudiante ha sido actualizado " ;
+		estudianteEncontrado.setNombres(nombres);
+		estudianteEncontrado.setApellidos(apellidos);
+
+		estudianteEncontrado.setEdadEstudiante(edad);
+
+		return " El estudiante ha sido actualizado ";
 	}
-	
-	
+
 	public void ordenarLibrosPorISBN() {
-        Collections.sort(listaEstudiantes, new Comparator<Estudiante>() {
-            @Override
-            public int compare(Estudiante estudiante1, Estudiante estudiante2) {
-                return estudiante1.getIdentificacion().compareTo(estudiante2.getIdentificacion());
-            }
-        });
-    }
-	
-	
-	
+		Collections.sort(listaEstudiantes, new Comparator<Estudiante>() {
+			@Override
+			public int compare(Estudiante estudiante1, Estudiante estudiante2) {
+				return estudiante1.getIdentificacion().compareTo(estudiante2.getIdentificacion());
+			}
+		});
+	}
+
 	/**
 	 * 
 	 * @param identificacion
 	 * @return
 	 */
 	private boolean verificarEstudiante(String identificacion) {
-		boolean verificado = false;		
+		boolean verificado = false;
 		for (Estudiante estudianteaux : listaEstudiantes) {
-			if(estudianteaux.getIdentificacion().equals(identificacion)){
+			if (estudianteaux.getIdentificacion().equals(identificacion)) {
 				verificado = true;
 				return verificado;
 			}
 		}
 		return verificado;
 	}
-	
-	public ArrayList<Estudiante> obtenerEstudiantesEdadMayor (int edad){
+
+	public ArrayList<Estudiante> obtenerEstudiantesEdadMayor(int edad) {
 		ArrayList<Estudiante> listaEstudiantesEncontrados = new ArrayList<Estudiante>();
-		
+
 		for (Estudiante estudiante : listaEstudiantes) {
-			if(estudiante.verificarEdad(edad)){
+			if (estudiante.verificarEdad(edad)) {
 				listaEstudiantesEncontrados.add(estudiante);
 			}
 		}
 		return listaEstudiantesEncontrados;
 	}
-	
+
 	/**
 	 * 
 	 * @param autor
 	 * @param valor
 	 * @return
 	 */
-	public ArrayList<Prestamo> obtenerPrestamosTotalAutor (String autor, double valor){
+	public ArrayList<Prestamo> obtenerPrestamosTotalAutor(String autor, double valor) {
 		ArrayList<Prestamo> prestamosEncontrados = new ArrayList<Prestamo>();
-		
+
 		for (Prestamo prestamo : listaPrestamos) {
-			if(prestamo.verificarTotalAutor(autor,valor) == true){
+			if (prestamo.verificarTotalAutor(autor, valor) == true) {
 				prestamosEncontrados.add(prestamo);
 			}
 		}
 		return prestamosEncontrados;
 	}
-	//-----------------------------------------------------------------------------------------------------	
+
+	// -----------------------------------------------------------------------------------------------------
 	/**
 	 * 
 	 * @return
-	 * @throws PrestamoException 
+	 * @throws PrestamoException
 	 */
-	public String obtenerEmpleadoPrestamoLibroIsbn(String isbn) throws PrestamoException{
+	public String obtenerEmpleadoPrestamoLibroIsbn(String isbn) throws PrestamoException {
 		String empleadoEncontrado = "";
-		
+
 		for (Prestamo prestamo : listaPrestamos) {
-			if(prestamo.cumpleIsbn(isbn)){
+			if (prestamo.cumpleIsbn(isbn)) {
 				empleadoEncontrado = prestamo.getEmpleadoPrestamo().toString();
 				return empleadoEncontrado;
 			}
 		}
-		
+
 		throw new PrestamoException("NO exuste un prestamo para el isbn");
 	}
-	
-	//punto 2
-	
-	public Prestamo devolverPrestamoLibro(String titulo,int limiteInferior,int limiteSuperior,int aniosExperiencia){
-		
+
+	// punto 2
+
+	public Prestamo devolverPrestamoLibro(String titulo, int limiteInferior, int limiteSuperior, int aniosExperiencia) {
+
 		Prestamo prestamoEncontrado = null;
 		for (Prestamo prestamo : listaPrestamos) {
-			if(prestamo.cumpleLibro(titulo,limiteInferior,limiteSuperior,aniosExperiencia)){
+			if (prestamo.cumpleLibro(titulo, limiteInferior, limiteSuperior, aniosExperiencia)) {
 				prestamoEncontrado = prestamo;
 				return prestamoEncontrado;
 			}
 		}
 		return prestamoEncontrado;
 	}
-	
-	//Consultar cual es el tipo de libro que ha sido prestado 
-	//más veces en la biblioteca, según sus unidades prestadas. (1.0).
 
-	public Tipo obtenerTipoMasPrestado(){
-		
+	// Consultar cual es el tipo de libro que ha sido prestado
+	// mï¿½s veces en la biblioteca, segï¿½n sus unidades prestadas. (1.0).
+
+	public Tipo obtenerTipoMasPrestado() {
+
 		Tipo tipoMasPrestado = Tipo.BIOGRAFIA;
 
 		int totalPrestadoBiografia = obtenerTotalPrestado(Tipo.BIOGRAFIA);
@@ -298,22 +287,13 @@ public class Biblioteca {
 	}
 
 	private int obtenerTotalPrestado(Tipo tipo) {
-		
+
 		int cantidad = 0;
 		for (Prestamo prestamo : listaPrestamos) {
 			cantidad += prestamo.obtenerCantidadTipo(tipo);
 		}
-		
+
 		return cantidad;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
