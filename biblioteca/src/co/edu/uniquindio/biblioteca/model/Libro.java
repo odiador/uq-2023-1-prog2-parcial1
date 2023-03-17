@@ -1,15 +1,14 @@
 package co.edu.uniquindio.biblioteca.model;
 
 public class Libro {
-	
-    private String titulo;
-    private String autor;
-    private String editorial;
-    private String isbn;
-    private Tipo tipo;
-       
 
-    public Libro(String titulo, String autor, String editorial, String isbn) {
+	private String titulo;
+	private String autor;
+	private String editorial;
+	private String isbn;
+	private Tipo tipo;
+
+	public Libro(String titulo, String autor, String editorial, String isbn) {
 		super();
 		this.titulo = titulo;
 		this.autor = autor;
@@ -18,28 +17,28 @@ public class Libro {
 	}
 
 	public String getTitulo() {
-        return titulo;
-    }
+		return titulo;
+	}
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-    public String getAutor() {
-        return autor;
-    }
+	public String getAutor() {
+		return autor;
+	}
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
 
-    public String getEditorial() {
-        return editorial;
-    }
+	public String getEditorial() {
+		return editorial;
+	}
 
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
-    }
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
 
 	public String getIsbn() {
 		return isbn;
@@ -74,12 +73,12 @@ public class Libro {
 		return true;
 	}
 
-	public boolean cumpleIsbn(String isbn2) {
-		if(getIsbn().equals(isbn)){
-			return true;
-		}else{
-			return false;
-		}
+	public boolean cumpleTitulo(String titulo) {
+		return getTitulo().equals(titulo);
+	}
+
+	public boolean cumpleIsbn(String isbn) {
+		return getIsbn().equals(isbn);
 	}
 
 	public Tipo getTipo() {
@@ -89,6 +88,5 @@ public class Libro {
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	
-    
+
 }
