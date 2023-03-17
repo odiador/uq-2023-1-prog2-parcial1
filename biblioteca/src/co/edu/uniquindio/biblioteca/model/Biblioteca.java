@@ -251,15 +251,12 @@ public class Biblioteca {
 	// punto 2
 
 	public Prestamo devolverPrestamoLibro(String titulo, int limiteInferior, int limiteSuperior, int aniosExperiencia) {
-
-		Prestamo prestamoEncontrado = null;
 		for (Prestamo prestamo : listaPrestamos) {
 			if (prestamo.cumpleLibro(titulo, limiteInferior, limiteSuperior, aniosExperiencia)) {
-				prestamoEncontrado = prestamo;
-				return prestamoEncontrado;
+				return prestamo;
 			}
 		}
-		return prestamoEncontrado;
+		return null;
 	}
 
 	// Consultar cual es el tipo de libro que ha sido prestado
