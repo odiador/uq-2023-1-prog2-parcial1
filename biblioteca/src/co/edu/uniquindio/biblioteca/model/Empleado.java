@@ -1,6 +1,7 @@
 package co.edu.uniquindio.biblioteca.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Empleado {
 
@@ -174,14 +175,33 @@ public class Empleado {
 		return true;
 	}
 
+	public List<Prestamo> obtenerListaPrestamos(int cantidadVocales, String autor, int cantidad) {
+		List<Prestamo> listaCondiciones = new ArrayList<Prestamo>();
+		for (Prestamo prestamo : listaPrestamos) {
+			
+		}
+	}
+
 	public boolean cumpleVocales(String nombre, int cantidad) {
 		return Util.contarVocales(nombre) >= cantidad;
 	}
 
 	public boolean verificarCantAutor(int cantidad, String autor) {
 		for (Prestamo prestamo : listaPrestamos) {
-
+			if (prestamo.verificarCantidadAutor(autor, cantidad)) {
+				return true;
+			}
 		}
 		return false;
+	}
+
+	/**
+	 * Determina si el empleado tiene un tipo especificado
+	 * 
+	 * @param tipoEmpleado es el tipo a comparar
+	 * @return true si tiene el mismo tipo
+	 */
+	public boolean cumpleTipo(TipoEmpleado tipoEmpleado) {
+		return getTipo() == tipoEmpleado;
 	}
 }

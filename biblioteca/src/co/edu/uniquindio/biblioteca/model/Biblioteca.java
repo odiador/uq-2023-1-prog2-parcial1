@@ -176,18 +176,18 @@ public class Biblioteca {
 	 * @param programa
 	 * @param estado
 	 * @param identificacion
-	 * @throws Exception
+	 * @throws BibliotecaException
 	 *
 	 * @return mensaje
 	 */
 
 	public String crearEstudiante(String nombres, String apellidos, Integer edad, String programa, String estado,
-			String identificacion) throws Exception {
+			String identificacion) throws BibliotecaException {
 
 		String mensaje = "El estudiante ha sido registrado";
 		boolean estudianteEncontrado = verificarEstudiante(identificacion);
 		if (estudianteEncontrado == true) {
-			throw new Exception("El estudiante ya existe");
+			throw new BibliotecaException("El estudiante ya existe");
 		} else {
 			Estudiante nuevoEstudiante = new Estudiante(nombres, apellidos, edad, programa, estado, identificacion);
 			listaEstudiantes.add(nuevoEstudiante);
@@ -488,12 +488,78 @@ public class Biblioteca {
 
 	public List<Prestamo> obtenerPrestamosNombreVocal(String nombre, int cantidadVocales,
 			int cantidad, String autor) {
+		List<Prestamo> listaEmpleadosCondicion = new ArrayList<Prestamo>();
 		for (Empleado empleado : listaEmpleados) {
-			if (empleado.cumpleVocales(nombre, cantidad) && empleado.verificarCantAutor(cantidad, autor)) {
+			List<Prestamo> listaResEmpleado = empleado.obtenerListaPrestamosVocalesAutorCantidad(cantidadVocales, autor,
+					cantidad);
+
+			if (listaResEmpleado.size() != 0) {
+				for (Prestamo prestamo : listaResEmpleado) {
+					listaEmpleadosCondicion.add(prestamo);
+				}
 			}
 
 		}
-		return null;
+		return listaEmpleadosCondicion;
+
+	}
+
+	/*
+	 * -----------------------PUNTO 3-----------------------
+	 * Obtener los estudiantes que hayan sido atendidos por un empleado de Tipo
+	 * “Tecnico”(usar enumeración los tipos son auxiliar, tecnico y profesional
+	 */
+	/**
+	 * Obtiene los estudiantes que hayan sido atendidos por algún empleado de tipo
+	 * técnico
+	 * 
+	 * @param tipoEmpleado es el tipo a comprarar
+	 * @return la lista de estudiantes que tienen esta condición
+	 */
+	public List<Estudiante> obtenerEstudianteDeTipo(TipoEmpleado tipoEmpleado) {
+		List<Estudiante> listaAtendidosPorTipo = new ArrayList<Estudiante>();
+		for (Estudiante estudiante : listaEstudiantes) {
+			if (estudiante.fueAtendidoPorTipo(tipoEmpleado)) {
+				listaAtendidosPorTipo.add(estudiante);
+			}
+		}
+		return listaAtendidosPorTipo;
+	}
+
+	/**
+	 * Busca un empleado a partir del nombre, retorna un null si no se encuentra
+	 * 
+	 * @param nombre
+	 * @return
+	 */
+	public Empleado buscarEmpleado(String nombre) {
+		return getListaEmpleados().stream().filter(empleado -> empleado.getNombre().equals(nombre)).findFirst()
+				.orElse(null);
+	}
+
+	/**
+	 * Crea un empleado
+	 * 
+	 * @param nombre
+	 * @param salario
+	 * @param cargo
+	 * @param tipo
+	 * @return
+	 * @throws BibliotecaException
+	 */
+	public String crearEmpleado(String nombre, Double salario, String cargo, TipoEmpleado tipo)
+			throws BibliotecaException {
+
+		String mensaje = "El empleado ha sido registrado";
+		if (verificarEmpleado(nombre)) {
+			throw new BibliotecaException("El empleado ya existe");
+		}
+		getListaEmpleados().add(new Empleado(nombre, salario, cargo, tipo));
+		return mensaje;
+	}
+
+	public boolean verificarEmpleado(String nombre) {
+		return buscarEmpleado(nombre) != null;
 	}
 
 }

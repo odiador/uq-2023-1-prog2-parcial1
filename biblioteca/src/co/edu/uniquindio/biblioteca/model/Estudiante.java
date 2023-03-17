@@ -246,4 +246,13 @@ public class Estudiante {
 		}
 		return listaLibrosTipoConTotal;
 	}
+
+	public boolean fueAtendidoPorTipo(TipoEmpleado tipoEmpleado) {
+		for (Prestamo prestamo : listaPrestamos) {
+			if (prestamo.empleadoTieneTipo(tipoEmpleado)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

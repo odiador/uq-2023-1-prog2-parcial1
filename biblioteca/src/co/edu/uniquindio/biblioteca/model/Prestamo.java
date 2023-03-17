@@ -222,10 +222,10 @@ public class Prestamo {
 	}
 
 	/**
-	 * q
+	 * Obtiene la cantidad de detalles que tienen un tipo de libro determinado
 	 * 
-	 * @param tipo
-	 * @return
+	 * @param tipo el tipo a comparar
+	 * @return la cantidad
 	 */
 	public int obtenerCantidadTipo(Tipo tipo) {
 		int cantidad = 0;
@@ -237,10 +237,23 @@ public class Prestamo {
 		return cantidad;
 	}
 
+	/**
+	 * Determina si el préstamo tiene el total en un rango determinado
+	 * 
+	 * @param valorInferior es el valor inferior
+	 * @param valorSuperior es el valor superior
+	 * @return true si está en ese rango
+	 */
 	public boolean tieneTotalEnRango(Double valorInferior, Double valorSuperior) {
 		return getTotal() <= valorInferior && getTotal() >= valorSuperior;
 	}
 
+	/**
+	 * Obtiene los libros que tienen un tipo de libro especificado
+	 * 
+	 * @param tipo es el tipo a comprarar
+	 * @return una lista de libros (puede estar vacía)
+	 */
 	public List<Libro> obtenerLibrosTienenTipo(Tipo tipo) {
 		List<Libro> listaLibrosTienenTipo = new ArrayList<Libro>();
 		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {
@@ -249,6 +262,33 @@ public class Prestamo {
 			}
 		}
 		return listaLibrosTienenTipo;
+	}
+
+	/**
+	 * Determina si un empleado tiene un tipo determinado
+	 * 
+	 * @param tipoEmpleado es el tipo a compraar
+	 * @return true si se cumple
+	 */
+	public boolean empleadoTieneTipo(TipoEmpleado tipoEmpleado) {
+		return getEmpleadoPrestamo().cumpleTipo(tipoEmpleado);
+	}
+
+	/**
+	 * Verifica si un detalle de préstamo tiene una cantidad determinada de libros y
+	 * si tiene un autor determinado
+	 * 
+	 * @param autor
+	 * @param cantidad
+	 * @return true si cumple las 2 condiciones
+	 */
+	public boolean verificarCantidadAutor(String autor, int cantidad) {
+		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {
+			if (detallePrestamo.cumpleAutor(autor) && detallePrestamo.verificarCant(cantidad)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
