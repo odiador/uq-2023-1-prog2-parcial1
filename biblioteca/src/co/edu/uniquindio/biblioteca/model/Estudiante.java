@@ -1,6 +1,7 @@
 package co.edu.uniquindio.biblioteca.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Estudiante {
 
@@ -190,16 +191,59 @@ public class Estudiante {
 		return true;
 	}
 
+	/**
+	 * Verifica si un estudiante tiene una identificación determinada
+	 * 
+	 * @param id es la identificacion
+	 * @return true si son iguales
+	 */
 	public boolean cumpleId(String id) {
-        return getIdentificacion().equals(id);
-    }
+		return getIdentificacion().equals(id);
+	}
 
+	/**
+	 * Verifica si un estudiante está en un progrsma determinado
+	 * 
+	 * @param programa es el programa
+	 * @return true si son iguales
+	 */
 	public boolean cumplePrograma(String programa) {
 		return getPrograma().equals(programa);
 	}
 
+	/**
+	 * Verifica si un estudiante está en un progrsma determinado y tiene una
+	 * identificación especificada
+	 * 
+	 * @param id       es la identificación
+	 * @param programa es el programa
+	 * @return true si cumple ambas condiciones
+	 * @see {@link #cumpleId(String)}
+	 *      <li>{@link #cumplePrograma(String)}
+	 */
 	public boolean cumpleIdPrograma(String id, String programa) {
 		return cumpleId(id) && cumplePrograma(programa);
 	}
 
+	/**
+	 * Obtiene los libros que tienen un tipo geterminado y total en un rango
+	 * determinado
+	 * 
+	 * @param tipo          es el tipo del libro a buscar
+	 * @param valorInferior es el valor inferior del rango
+	 * @param valorSuperior es el valor superior del rango
+	 * @return la lsita de libros que cumplen con estas condiciones
+	 */
+	public List<Libro> obtenerLibrosTipoconTotalEnRango(Tipo tipo, Double valorInferior, Double valorSuperior) {
+		List<Libro> listaLibrosTipoConTotal = new ArrayList<Libro>();
+		for (Prestamo prestamo : listaPrestamos) {
+			List<Libro> listaLibrosTipo = prestamo.obtenerLibrosTienenTipo(tipo);
+			if (prestamo.tieneTotalEnRango(valorInferior, valorSuperior) && listaLibrosTipo.size() == 0) {
+				for (Libro libro : listaLibrosTipo) {
+					listaLibrosTipoConTotal.add(libro);
+				}
+			}
+		}
+		return listaLibrosTipoConTotal;
+	}
 }

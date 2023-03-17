@@ -1,6 +1,7 @@
 package co.edu.uniquindio.biblioteca.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Prestamo {
 
@@ -234,6 +235,20 @@ public class Prestamo {
 			}
 		}
 		return cantidad;
+	}
+
+	public boolean tieneTotalEnRango(Double valorInferior, Double valorSuperior) {
+		return getTotal() <= valorInferior && getTotal() >= valorSuperior;
+	}
+
+	public List<Libro> obtenerLibrosTienenTipo(Tipo tipo) {
+		List<Libro> listaLibrosTienenTipo = new ArrayList<Libro>();
+		for (DetallePrestamo detallePrestamo : listaDetallePrestamo) {
+			if (detallePrestamo.cumpleTipo(tipo)) {
+				listaLibrosTienenTipo.add(detallePrestamo.getLibro());
+			}
+		}
+		return listaLibrosTienenTipo;
 	}
 
 }

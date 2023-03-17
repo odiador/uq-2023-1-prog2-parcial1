@@ -453,10 +453,25 @@ public class Biblioteca {
 	 * programa, estos préstamos deben tener un total dentro del rango mayor a 10000
 	 * y menor a 200000. (1.0).
 	 */
-	public List<Libro> obtenerLibrosCientificoEstudiantePrograma(String id, String programa, Double total) {
+	/**
+	 * Obtiene los libros de un tipo determinado que hayan sido prestados por un
+	 * estudiante que tenga una identificadion {@code id} y que esté en un programa
+	 * determinado, y que además que los préstamos del estudiante esté en un rango
+	 * de 2 valores
+	 * 
+	 * @param id
+	 * @param programa
+	 * @param tipo
+	 * @param total
+	 * @param valorInferior
+	 * @param valorSuperior
+	 * @return
+	 */
+	public List<Libro> obtenerLibrosdeTipoDePrestamoEnRangoAPartirDelEstudiante(String id, String programa, Tipo tipo,
+			Double total, Double valorInferior, Double valorSuperior) {
 		for (Estudiante estudiante : listaEstudiantes) {
 			if (estudiante.cumpleIdPrograma(id, programa)) {
-				estudiante.obtenerLibrosCientificosTotal
+				return estudiante.obtenerLibrosTipoconTotalEnRango(tipo, valorInferior, valorSuperior);
 			}
 		}
 		return null;
@@ -470,9 +485,12 @@ public class Biblioteca {
 	 * "DetallePrestamo"
 	 */
 
-	public List<Prestamo> obtenerListaPretamosEmpleadosTresVocalesYDiezGaboLibros() {
+	public List<Prestamo> obtenerPrestamosNombreVocal(String nombre, int cantidadVocales,
+			int cantidad, String autor) {
 		for (Empleado empleado : listaEmpleados) {
-			
+			if (empleado.cumpleVocales(nombre, cantidad) && empleado.verificarCantAutor(cantidad, autor)) {
+			}
+
 		}
 		return null;
 	}

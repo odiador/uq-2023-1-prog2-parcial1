@@ -180,6 +180,10 @@ public class DetallePrestamo {
 		return true;
 	}
 
+	public boolean verificarCantAutor(int cantidad2, String autor) {
+		return getCantidad() >= cantidad2 && getLibro().cumpleAutor(autor);
+	}
+
 	@Override
 	public String toString() {
 		return "DetallePrestamo [codigo=" + codigo + ", subTotal=" + subTotal + ", cantidad=" + cantidad + ", libro="

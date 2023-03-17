@@ -121,7 +121,6 @@ public class Empleado {
 	public void setAniosExperiencia(int aniosExperiencia) {
 		this.aniosExperiencia = aniosExperiencia;
 	}
-	
 
 	@Override
 	public String toString() {
@@ -152,5 +151,16 @@ public class Empleado {
 		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
+	}
+
+	public boolean cumpleVocales(String nombre, int cantidad) {
+		return Util.contarVocales(nombre) >= cantidad;
+	}
+
+	public boolean verificarCantAutor(int cantidad, String autor) {
+		for (Prestamo prestamo : listaPrestamos) {
+
+		}
+		return false;
 	}
 }
