@@ -8,6 +8,8 @@ public class Empleado {
 	private double salario;
 	private String cargo;
 	private ArrayList<Prestamo> listaPrestamos;
+	private TipoEmpleado tipo;
+
 	private int aniosExperiencia;
 
 	/**
@@ -17,11 +19,12 @@ public class Empleado {
 	 * @param salario
 	 * @param cargo
 	 */
-	public Empleado(String nombre, double salario, String cargo) {
+	public Empleado(String nombre, double salario, String cargo, TipoEmpleado tipo) {
 		super();
 		this.nombre = nombre;
 		this.salario = salario;
 		this.cargo = cargo;
+		this.tipo = tipo;
 		this.listaPrestamos = new ArrayList<Prestamo>();
 	}
 
@@ -122,10 +125,28 @@ public class Empleado {
 		this.aniosExperiencia = aniosExperiencia;
 	}
 
+	/**
+	 * Obtiene el tipo del empleado
+	 * 
+	 * @return
+	 */
+	public TipoEmpleado getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * Cambia el tipo del empleado
+	 * 
+	 * @param tipo
+	 */
+	public void setTipo(TipoEmpleado tipo) {
+		this.tipo = tipo;
+	}
+
 	@Override
 	public String toString() {
-		return "Empleado [nombre=" + nombre + ", salario=" + salario + ", cargo=" + cargo + ", listaPrestamos="
-				+ listaPrestamos + ", aniosExperiencia=" + aniosExperiencia + "]";
+		return "Empleado [nombre=" + nombre + ", salario=" + salario + ", cargo=" + cargo + ", tipo=" + tipo
+				+ ", aniosExperiencia=" + aniosExperiencia + "]";
 	}
 
 	@Override
