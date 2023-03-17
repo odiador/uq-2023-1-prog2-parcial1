@@ -190,4 +190,16 @@ public class Estudiante {
 		return true;
 	}
 
+	public boolean cumpleId(String id) {
+        return getIdentificacion().equals(id);
+    }
+
+	public boolean cumplePrograma(String programa) {
+		return getPrograma().equals(programa);
+	}
+
+	public boolean cumpleIdPrograma(String id, String programa) {
+		return cumpleId(id) && cumplePrograma(programa);
+	}
+
 }
