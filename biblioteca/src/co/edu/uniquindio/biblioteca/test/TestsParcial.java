@@ -21,8 +21,6 @@ public class TestsParcial {
             Assert.fail(e.getMessage());
         }
         try {
-            Empleado e;
-            // String nombre, Double salario, String cargo, TipoEmpleado tipo)
             String resCrearEmpleado = biblioteca.crearEmpleado("Juse", 2000000d, "Granjero", TipoEmpleado.AUXILIAR);
             Assert.assertEquals(resCrearEmpleado, "El estudiante ha sido registrado");
         } catch (BibliotecaException e) {

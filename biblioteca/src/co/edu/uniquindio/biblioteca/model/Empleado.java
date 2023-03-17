@@ -175,11 +175,14 @@ public class Empleado {
 		return true;
 	}
 
-	public List<Prestamo> obtenerListaPrestamos(int cantidadVocales, String autor, int cantidad) {
+	public List<Prestamo> obtenerListaPrestamosVocalesAutorCantidad(int cantidadVocales, String autor, int cantidad) {
 		List<Prestamo> listaCondiciones = new ArrayList<Prestamo>();
 		for (Prestamo prestamo : listaPrestamos) {
-			
+			if (cumpleVocales(autor, cantidad) && prestamo.verificarCantidadAutor(autor, cantidad)) {
+				listaCondiciones.add(prestamo);
+			}
 		}
+		return listaCondiciones;
 	}
 
 	public boolean cumpleVocales(String nombre, int cantidad) {
