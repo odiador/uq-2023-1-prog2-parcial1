@@ -1,6 +1,7 @@
 package co.edu.uniquindio.biblioteca.test;
 
 import static org.junit.Assert.*;
+import org.junit.Assert;
 
 import org.junit.Test;
 
@@ -10,13 +11,13 @@ public class LibroTest {
 
 	@Test
 	public void testSetAutor() {
-		
-		Libro libro = new Libro("a","b","c" ,"1");
-		
+
+		Libro libro = new Libro("a", "b", "c", "1");
+
 		libro.setAutor("Juan");
-		
-		assertEquals("Juan",libro.getAutor());
+
+		assertEquals("Juan", libro.getAutor());
+		// org.junit.Assert.assertNotEquals(libro, libro);
 
 	}
-
 }
