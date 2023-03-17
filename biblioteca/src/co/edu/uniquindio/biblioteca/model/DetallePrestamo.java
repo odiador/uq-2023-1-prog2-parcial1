@@ -47,12 +47,6 @@ public class DetallePrestamo {
 		this.libro = libro;
 	}
 
-	@Override
-	public String toString() {
-		return "DetallePrestamo [codigo=" + codigo + ", subTotal=" + subTotal + ", cantidad=" + cantidad + ", libro="
-				+ libro + "]";
-	}
-
 	public boolean verificarCantidad() {
 
 		if (cantidad > 20) {
@@ -66,29 +60,55 @@ public class DetallePrestamo {
 	}
 
 	public boolean cumpleLibro(String titulo, int limiteInferior, int limiteSuperior) {
-
-		boolean cumpleNombre = false;
-		boolean cumpleCantidad = false;
-
-		cumpleCantidad = verificarRango(limiteInferior, limiteSuperior);
-		cumpleNombre = verificarNombre(titulo);
-
-		if (cumpleCantidad && cumpleNombre) {
-			return true;
-		}
-		return false;
+		return verificarRango(limiteInferior, limiteSuperior) && verificarNombre(titulo);
 	}
 
 	private boolean verificarNombre(String titulo) {
-		return getLibro().getTitulo().equals(titulo);
+		return getLibro().cumpleTitulo(titulo);
 	}
 
 	private boolean verificarRango(int limiteInferior, int limiteSuperior) {
-		return cantidad >= limiteInferior && cantidad < limiteSuperior;
+		return getCantidad() >= limiteInferior && getCantidad() < limiteSuperior;
 	}
 
+	/**
+	 * 
+	 * @param tipo
+	 * @return
+	 */
 	public boolean cumpleTipo(Tipo tipo) {
 		return getLibro().getTipo() == tipo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DetallePrestamo other = (DetallePrestamo) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "DetallePrestamo [codigo=" + codigo + ", subTotal=" + subTotal + ", cantidad=" + cantidad + ", libro="
+				+ libro + "]";
 	}
 
 }
