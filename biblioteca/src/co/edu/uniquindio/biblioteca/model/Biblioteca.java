@@ -3,6 +3,7 @@ package co.edu.uniquindio.biblioteca.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Biblioteca {
 
@@ -249,7 +250,7 @@ public class Biblioteca {
 	 *
 	 * @return El estudiante ha sido actualizado
 	 */
-	
+
 	public String actualizarEstudiante(String nombres, String apellidos, String identificacion, Integer edad)
 			throws Exception {
 		Estudiante estudianteEncontrado = obtenerEstudiante(identificacion);
@@ -283,7 +284,7 @@ public class Biblioteca {
 	 * @param identificacion
 	 * @return verificado
 	 */
-	 
+
 	private boolean verificarEstudiante(String identificacion) {
 		boolean verificado = false;
 		for (Estudiante estudianteaux : listaEstudiantes) {
@@ -313,7 +314,7 @@ public class Biblioteca {
 	}
 
 	/**
-	 * Obtiene los prestamos que tienen un autor y valor determinados 
+	 * Obtiene los prestamos que tienen un autor y valor determinados
 	 *
 	 * @param autor
 	 * @param valor
@@ -334,6 +335,7 @@ public class Biblioteca {
 	// -----------------------------------------------------------------------------------------------------
 	/**
 	 * 
+	 *
 	 * @return
 	 * @throws BibliotecaException
 	 */
@@ -369,12 +371,12 @@ public class Biblioteca {
 		return null;
 	}
 
-//------------------------------------------------------------------------------------------------
+	// ------------------------------------------------------------------------------------------------
 	// Consultar cual es el tipo de libro que ha sido prestado
 	// mas veces en la biblioteca, segun sus unidades prestadas.
 
 	/**
-	 * Obtiene el tipo de libro mas vendido 
+	 * Obtiene el tipo de libro mas vendido
 	 *
 	 * @return tipoMasPrestado
 	 */
@@ -443,6 +445,36 @@ public class Biblioteca {
 		} else if (!telefono.equals(other.telefono))
 			return false;
 		return true;
+	}
+
+	/*
+	 * Parcial 1 -> punto N°1: 1.25 Devolver los Libros de tipo Científico que han
+	 * sido prestados por un estudiante dado la identificación del estudiante y el
+	 * programa, estos préstamos deben tener un total dentro del rango mayor a 10000
+	 * y menor a 200000. (1.0).
+	 */
+	public List<Libro> obtenerLibrosCientificoEstudiantePrograma(String id, String programa, Double total) {
+		for (Estudiante estudiante : listaEstudiantes) {
+			if (estudiante.cumpleIdPrograma(id, programa)) {
+				estudiante.obtenerLibrosCientificosTotal
+			}
+		}
+		return null;
+	}
+
+	/*
+	 * Devolver la lista de préstamos "Biblioteca"
+	 * donde el empleado tenga en su nombre mínimo tres vocales y
+	 * "contar vocales del nombre"
+	 * el préstamo tenga al menos 10 libros del autor “Gabriel Garcia Marquez”.
+	 * "DetallePrestamo"
+	 */
+
+	public List<Prestamo> obtenerListaPretamosEmpleadosTresVocalesYDiezGaboLibros() {
+		for (Empleado empleado : listaEmpleados) {
+			
+		}
+		return null;
 	}
 
 }
